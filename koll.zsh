@@ -40,7 +40,7 @@ validate_required() {
   check_command $KOLLZSH_PYTHON3 || return 1
   
   # Check if Ollama is running
-  check_ollama_running || return 1
+  # check_ollama_running || return 1
   
   # Check if the specified model exists
   if ! curl -s "${KOLLZSH_URL}/api/tags" -H "Authorization: Bearer ${KOLLZSH_APIKEY}" | grep -q $KOLLZSH_MODEL; then
