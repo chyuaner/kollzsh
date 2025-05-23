@@ -41,8 +41,9 @@ def get_shell_command_tool(commands: list[str]) -> dict:
 
 def interact_with_ollama(user_query):
     """Interact with the Ollama server and retrieve command suggestions."""
-    if os.environ["KOLLZSH_APIKEY"] != "":
-        client = Client(host=os.environ["KOLLZSH_URL"], headers={'Authorization': 'Bearer '+os.environ["KOLLZSH_APIKEY"]})
+    api_key = os.getenv("KOLLZSH_APIKEY", "")
+    if api_key:
+        client = Client(host=os.environ["KOLLZSH_URL"], headers={'Authorization': 'Bearer ' + api_key})
     else:
         client = Client(host=os.environ["KOLLZSH_URL"])
 
