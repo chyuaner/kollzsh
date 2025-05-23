@@ -6,6 +6,8 @@
 (( ! ${+KOLLZSH_COMMAND_COUNT} )) && typeset -g KOLLZSH_COMMAND_COUNT='5'
 # default ollama server host
 (( ! ${+KOLLZSH_URL} )) && typeset -g KOLLZSH_URL='http://localhost:11434'
+# default ollama server API Key
+(( ! ${+KOLLZSH_APIKEY} )) && typeset -g KOLLZSH_APIKEY=''
 # default ollama time to keep the server alive
 (( ! ${+KOLLZSH_KEEP_ALIVE} )) && typeset -g KOLLZSH_KEEP_ALIVE='1h'
 # default python3 path
@@ -41,7 +43,7 @@ validate_required() {
   check_ollama_running || return 1
   
   # Check if the specified model exists
-  if ! curl -s "${KOLLZSH_URL}/api/tags" | grep -q $KOLLZSH_MODEL; then
+  if ! curl -s "${KOLLZSH_URL}/api/tags" -H "Authorization: Bearer ${KOLLZSH_APIKEY}" | grep -q $KOLLZSH_MODEL; then
     echo "🚨 Model ${KOLLZSH_MODEL} not found!"
     echo "Please pull it with: ollama pull ${KOLLZSH_MODEL}"
     return 1
@@ -67,6 +69,7 @@ fzf_kollzsh() {
 
   # Export necessary environment variables to be used by the python script
   export KOLLZSH_URL
+  export KOLLZSH_APIKEY
   export KOLLZSH_COMMAND_COUNT
   export KOLLZSH_MODEL
   export KOLLZSH_KEEP_ALIVE

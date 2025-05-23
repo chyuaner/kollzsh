@@ -45,6 +45,7 @@ suggestions based on user input requirements.
 | `KOLLZSH_HOTKEY`        | `^o` (Ctrl-o)            | Default shortcut key for triggering the plugin |
 | `KOLLZSH_COMMAND_COUNT` | `5`                      | Number of command suggestions displayed        |
 | `KOLLZSH_URL`           | `http://localhost:11434` | The URL of OLLAMA server host                  |
+| `KOLLZSH_APIKEY`        | `my-secret-key`             | set to http header Authorization Bearer        |
 | `KOLLZSH_KEEP_ALIVE`    | `1h`                     | The time to keep the OLLAMA server alive       |
 | `KOLLZSH_PYTHON3`       | `/usr/bin/python3`       | The Python interpreter to use                  |
 
@@ -72,6 +73,7 @@ suggestions based on user input requirements.
    KOLLZSH_HOTKEY="^o"
    KOLLZSH_COMMAND_COUNT=5
    KOLLZSH_URL="http://localhost:11434"
+   KOLLZSH_APIKEY="my-secret-key"
    KOLLZSH_KEEP_ALIVE="1h"
    KOLLZSH_PYTHON3="python3"
    ```
